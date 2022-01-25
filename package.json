@@ -27,5 +27,16 @@
   "devDependencies": {
     "@babel/core": "^7.12.9"
   },
-  "private": true
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vikki1221/TailorApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vikki1221/TailorApp/issues"
+  },
+  "homepage": "https://github.com/vikki1221/TailorApp#readme",
+  "description": ""
 }

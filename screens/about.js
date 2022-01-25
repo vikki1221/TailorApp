@@ -6,15 +6,21 @@ import { globalStyles } from '../styles/global';
 export default function About({navigation}) {
   return (
     <View style={styles.container}>
-    <ImageBackground source={require('../assets/images.png')} resizeMode="cover" style={styles.image}>
-    <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={() => navigation.navigate("WomenItem")}>
+    <ImageBackground source={require('../assets/bgwomenn.jpg')} resizeMode="cover" style={styles.image}>
+      <View style={[styles.marginofbutton]}> 
+      <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={() => navigation.navigate("WomenItem")}>
           <Text style={styles.loginText}>Women</Text>
         </TouchableHighlight>
+        </View>
+    
     </ImageBackground>
-    <ImageBackground source={require('../assets/Tailors.jpg')} resizeMode="cover" style={styles.image}>
-    <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={() => navigation.navigate("About")}>
+    <ImageBackground source={require('../assets/bdmen.png')} resizeMode="cover" style={styles.image}>
+      <View style={[styles.marginofbutton]}>
+      <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={() => navigation.navigate("About")}>
           <Text style={styles.loginText}>Men</Text>
         </TouchableHighlight>
+      </View>
+    
     </ImageBackground>
   </View>
       
@@ -28,6 +34,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
   
+  },
+  marginofbutton :{
+    alignItems:"center"
   },
   text: {
     color: "white",
