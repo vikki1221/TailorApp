@@ -5,6 +5,7 @@ import Signup from './screens/signup';
 
 import About from './screens/about';
 import WomenItem from './screens/womenItem';
+import ListTailors from './screens/listTailors';
 
 import Splash from './screens/splash';
 //import Navigator from './routes/homeStack'
@@ -33,6 +34,7 @@ export default function App() {
      <Stack.Screen name="Signup" component={Signup} />
      <Stack.Screen name="About" component={About} />
      <Stack.Screen name="WomenItem" component={WomenItem} />
+     <Stack.Screen name="ListTailors" component={ListTailors} />
      
 
     </Stack.Navigator>

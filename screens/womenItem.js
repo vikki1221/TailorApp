@@ -6,26 +6,32 @@ const DATA = [
     {
       id: "1",
       title: "Simple Blouse",
+      val: "simpleBlouse"
     },
     {
       id: "2",
       title: "Designer Blouse",
+      val: "designerBlouse"
     },
     {
       id: "3",
       title: "Kurta/Kurti",
+      val: "kurta"
     },
     {
       id: "4",
       title: "Garara",
+      val: "gharara"
     },
     {
       id: "5",
       title: "Sharara",
+      val: "sharara"
     },
     {
       id: "6",
       title: "Pyjamas",
+      val: "pyjamas"
     },
    
   ];
@@ -50,8 +56,8 @@ return <View style={[styles.item,styles.itemInvisible]} />
   }
       return (
         <View style={styles.item}>
-          <TouchableOpacity>
-        <Text style={styles.itemText}>{item.title}</Text>
+          <TouchableOpacity onPress={() => navigation.navigate("ListTailors",{selectedItem:item.val})  }>
+        <Text style={styles.itemText}  >{item.title}</Text>
         </TouchableOpacity>
           </View>
       );
