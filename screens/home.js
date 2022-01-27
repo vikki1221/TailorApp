@@ -6,7 +6,7 @@ import Onboarding from 'react-native-onboarding-swiper';
 export default function Home({navigation}) {
   return (
     <Onboarding
-    onSkip={()=>navigation.replace("Login")}
+    onSkip={()=>navigation.replace("Splash")}
     onDone={()=>navigation.navigate("Login")}
     pages={[
       {
