@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import Tailors from "../model/tailors";
 import {Card} from 'react-native-shadow-cards';
 import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity,Dimensions, View, Button } from "react-native";
-
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 import { SliderBox } from "react-native-image-slider-box";
 
@@ -27,7 +29,7 @@ export default function listTailors({route}){
             return (
               <View >
                     <Card style={{padding: 10, margin: 10}}>
-                        <View style={styles.container} >
+                        <View style={styles.images} >
                             <SliderBox images={state.images}
                             sliderBoxHeight={200} 
                             dotColor="#FFEE58"
@@ -35,7 +37,13 @@ export default function listTailors({route}){
                             autoplay
                             circleLoop/>
                         </View>
+                        <View>
+                        <View style={styles.ratingBlock}>
+                        <Text style={styles.ratingText} >{item.rating}</Text>
+                        <FontAwesome name='star' style={styles.iconn}/>
+                        </View>
                         <Text style={styles.itemText} >{item.username}</Text>
+                        </View>
                     </Card>
       {/* <Card style={{padding: 10, margin: 10}}>
         <Button
@@ -71,6 +79,10 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor:'#f5f5f5',
     },
+    images: {
+        flex: 1,
+        backgroundColor:'#f5f5f5',
+    },
     tailorCard: {
         backgroundColor:'#FFFFFF',
         alignItems:'center',
@@ -79,10 +91,31 @@ const styles = StyleSheet.create({
         margin:10,
     },
     itemText:{
-        marginTop:20,
+        marginTop:-20,
         color:'black',
         fontSize:30,
         fontWeight:'bold',
-    }
+    },
+    ratingBlock:{
+        backgroundColor:'#228B22',
+        width:60,
+        height:32,
+        marginLeft:250,
+        marginTop:20,
+        zIndex:1,
+        borderRadius:5,
+        flex:1,
+        flexWrap:'wrap',
+        justifyContent: 'center',
+        alignContent:'center'
+    },
+    ratingText:{
+        fontSize:25,
+        color:'white',
+    },
+    iconn:{
+        color:'white',
+        marginLeft:5
+    },
 
 });
