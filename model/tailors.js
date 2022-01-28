@@ -10,7 +10,15 @@ export default Tailors = [
         'kurta':'true',
         'gharara':'true',
         'sharara':'true',
-        'pyjamas':'true'
+        'pyjamas':'true',
+        'shirtMale':'true',
+        'pantsMale':'true',
+        'blazer':'true',
+        'suit':'true',
+        'images': [
+            require('../assets/Tailors.jpg'),
+            require('../assets/Tailors.jpg'),
+          ]
     },
     {
         'id': 2, 
@@ -23,7 +31,17 @@ export default Tailors = [
         'kurta':'true',
         'gharara':'true',
         'sharara':'false',
-        'pyjamas':'true'
+        'pyjamas':'true',
+        'shirtMale':'false',
+        'pantsMale':'true',
+        'blazer':'false',
+        'suit':'true',
+        'images': [
+            "https://source.unsplash.com/1024x768/?nature",
+            "https://source.unsplash.com/1024x768/?water",
+            "https://source.unsplash.com/1024x768/?girl",
+            "https://source.unsplash.com/1024x768/?tree", 
+          ]
     },
     {
         'id': 3, 
@@ -36,7 +54,17 @@ export default Tailors = [
         'kurta':'true',
         'gharara':'false',
         'sharara':'true',
-        'pyjamas':'false'
+        'pyjamas':'false',
+        'shirtMale':'false',
+        'pantsMale':'true',
+        'blazer':'true',
+        'suit':'true',
+        'images': [
+            "https://source.unsplash.com/1024x768/?nature",
+            "https://source.unsplash.com/1024x768/?water",
+            "https://source.unsplash.com/1024x768/?girl",
+            "https://source.unsplash.com/1024x768/?tree", 
+          ]
     },
     {
         'id': 4, 
@@ -49,6 +77,16 @@ export default Tailors = [
         'kurta':'false',
         'gharara':'true',
         'sharara':'false',
-        'pyjamas':'true'
+        'pyjamas':'true',
+        'shirtMale':'true',
+        'pantsMale':'false',
+        'blazer':'true',
+        'suit':'false',
+        'images': [
+            "https://source.unsplash.com/1024x768/?nature",
+            "https://source.unsplash.com/1024x768/?water",
+            "https://source.unsplash.com/1024x768/?girl",
+            "https://source.unsplash.com/1024x768/?tree", 
+          ]
     }
 ];

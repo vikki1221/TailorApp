@@ -6,12 +6,12 @@ const DATA = [
   {
     id: "1",
     title: "Men",
-    val: "men"
+    val: "male"
   },
   {
     id: "2",
     title: "Women",
-    val: "women"
+    val: "female"
   },
   {
     id: "3",
@@ -25,7 +25,7 @@ export default function About({navigation}) {
 
         return (
           <View style={styles.item}>
-            <TouchableOpacity onPress={() => navigation.navigate("WomenItem")  }>
+            <TouchableOpacity onPress={() => navigation.navigate("WomenItem",{gender:item.val})  }>
             <Image style = {styles.image}
              source={require('../assets/male.png')}
       />

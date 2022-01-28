@@ -8,29 +8,32 @@ import Entypo from 'react-native-vector-icons/Entypo';
 
 import { SliderBox } from "react-native-image-slider-box";
 
-export default function listTailors({route}){
+export default function listTailors({route,navigation}){
     
-        state = {
-          images: [
-            require('../assets/Tailors.jpg'),
-            "https://source.unsplash.com/1024x768/?nature",
-            "https://source.unsplash.com/1024x768/?water",
-            "https://source.unsplash.com/1024x768/?girl",
-            "https://source.unsplash.com/1024x768/?tree", 
-          ]
-        };
-    
+        // state = {
+        //   images: [
+        //     require('../assets/Tailors.jpg'),
+        //     "https://source.unsplash.com/1024x768/?nature",
+        //     "https://source.unsplash.com/1024x768/?water",
+        //     "https://source.unsplash.com/1024x768/?girl",
+        //     "https://source.unsplash.com/1024x768/?tree", 
+        //   ]
+        // };
+        const [width, setWidth] = useState(0);
     const { selectedItem } = route.params;
     console.log(selectedItem);
+    
     const tailors = Tailors;
     console.log(Tailors[0]["simpleBlouse"]);
     const renderItem = ({ item }) => {
         if(item[selectedItem] == 'true' ){
             return (
               <View >
-                    <Card style={{padding: 10, margin: 10}}>
-                        <View style={styles.images} >
-                            <SliderBox images={state.images}
+                   <TouchableOpacity onPress={()=>console.log(item.id)}>
+                    <Card style={{padding: 10, margin: 20, borderRadius:15}}>
+                        <View style={styles.images} onLayout={(event)=> setWidth(event.nativeEvent.layout.width)}>
+                            <SliderBox images={item.images} 
+                            parentWidth={width}
                             sliderBoxHeight={200} 
                             dotColor="#FFEE58"
                             inactiveDotColor="#90A4AE"
@@ -45,6 +48,7 @@ export default function listTailors({route}){
                         <Text style={styles.itemText} >{item.username}</Text>
                         </View>
                     </Card>
+                    </TouchableOpacity>
       {/* <Card style={{padding: 10, margin: 10}}>
         <Button
           onPress={()=>{}}

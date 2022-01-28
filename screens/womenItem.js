@@ -2,43 +2,46 @@ import React, { useState } from "react";
 
 import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity,Dimensions, View } from "react-native";
 
-const DATA = [
-    {
-      id: "1",
-      title: "Simple Blouse",
-      val: "simpleBlouse"
-    },
-    {
-      id: "2",
-      title: "Designer Blouse",
-      val: "designerBlouse"
-    },
-    {
-      id: "3",
-      title: "Kurta/Kurti",
-      val: "kurta"
-    },
-    {
-      id: "4",
-      title: "Garara",
-      val: "gharara"
-    },
-    {
-      id: "5",
-      title: "Sharara",
-      val: "sharara"
-    },
-    {
-      id: "6",
-      title: "Pyjamas",
-      val: "pyjamas"
-    },
-   
-  ];
+import Products from "../model/products";
 
+// const DATA = [
+//     {
+//       id: "1",
+//       title: "Simple Blouse",
+//       val: "simpleBlouse"
+//     },
+//     {
+//       id: "2",
+//       title: "Designer Blouse",
+//       val: "designerBlouse"
+//     },
+//     {
+//       id: "3",
+//       title: "Kurta/Kurti",
+//       val: "kurta"
+//     },
+//     {
+//       id: "4",
+//       title: "Garara",
+//       val: "gharara"
+//     },
+//     {
+//       id: "5",
+//       title: "Sharara",
+//       val: "sharara"
+//     },
+//     {
+//       id: "6",
+//       title: "Pyjamas",
+//       val: "pyjamas"
+//     },
+   
+//   ];
+  const DATA = Products;
   const numcolums = 2;
   const WIDTH=Dimensions.get('window').width;
-export default function womenItem({navigation}) {
+export default function womenItem({route, navigation}) {
+  const {gender} = route.params;
   const formatData = (DATA,numcolums) =>{
     const totalRows = Math.floor(DATA.length/numcolums)
     let totalLastRow = DATA.length - (totalRows * numcolums)
@@ -54,6 +57,7 @@ export default function womenItem({navigation}) {
   if(item.empty){
 return <View style={[styles.item,styles.itemInvisible]} />
   }
+  else if(item[gender]=='true'){
       return (
         <View style={styles.item}>
           <TouchableOpacity onPress={() => navigation.navigate("ListTailors",{selectedItem:item.val})  }>
@@ -61,6 +65,7 @@ return <View style={[styles.item,styles.itemInvisible]} />
         </TouchableOpacity>
           </View>
       );
+  }
     };
   
     return (
