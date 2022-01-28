@@ -1,27 +1,47 @@
 import React from 'react';
-import { StyleSheet, Text, View ,ImageBackground,TouchableHighlight} from 'react-native';
+import { StyleSheet, Text, View ,Image,FlatList,TouchableOpacity} from 'react-native';
 import { globalStyles } from '../styles/global';
 
-
+const DATA = [
+  {
+    id: "1",
+    title: "Men",
+    val: "men"
+  },
+  {
+    id: "2",
+    title: "Women",
+    val: "women"
+  },
+  {
+    id: "3",
+    title: "Kids",
+    val: "kids"
+  },
+];
+const numcolums = DATA.length
 export default function About({navigation}) {
+  const renderItem = ({ item }) => {
+
+        return (
+          <View style={styles.item}>
+            <TouchableOpacity onPress={() => navigation.navigate("WomenItem")  }>
+            <Image style = {styles.image}
+             source={require('../assets/male.png')}
+      />
+          <Text>{item.title}</Text>
+          </TouchableOpacity>
+            </View>
+        );
+      };
   return (
     <View style={styles.container}>
-    <ImageBackground source={require('../assets/bgwomenn.jpg')} resizeMode="cover" style={styles.image}>
-      <View style={[styles.marginofbutton]}> 
-      <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={() => navigation.navigate("WomenItem")}>
-          <Text style={styles.loginText}>Women</Text>
-        </TouchableHighlight>
-        </View>
-    
-    </ImageBackground>
-    <ImageBackground source={require('../assets/bdmen.png')} resizeMode="cover" style={styles.image}>
-      <View style={[styles.marginofbutton]}>
-      <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={() => navigation.navigate("About")}>
-          <Text style={styles.loginText}>Men</Text>
-        </TouchableHighlight>
-      </View>
-    
-    </ImageBackground>
+       <FlatList
+          data={DATA}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          numColumns={numcolums}
+        />
   </View>
       
   );
@@ -29,11 +49,16 @@ export default function About({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: "center",
+    height: "100%",
+    textAlign: "center"
   },
   image: {
     flex: 1,
     justifyContent: "center",
-  
+    height:100,
+    width:100,
+    borderRadius:50
   },
   marginofbutton :{
     alignItems:"center"
@@ -60,5 +85,12 @@ const styles = StyleSheet.create({
   },
   loginText: {
     color: 'white',
-  }
+  },
+  item:{
+    fontWeight: "bold",
+    textAlign: "center",
+    justifyContent: 'center',
+    margin:20,
+    alignItems: "center",
+  },
   });
