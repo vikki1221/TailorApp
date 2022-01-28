@@ -2,18 +2,26 @@ export default Tailors = [
     {
         'id': 1, 
         'email': 't1@email.com',
-        'username': 'tailor1', 
+        'username': 'Tailor1 shop', 
         'password': 'tailor1', 
         'simpleBlouse': 'true',
         'designerBlouse':'false',
+        'kurta':'true',
+        'gharara':'true',
+        'sharara':'true',
+        'pyjamas':'true'
     },
     {
         'id': 2, 
         'email': 't2@email.com',
-        'username': 'tailor2', 
+        'username': 'Tailor2', 
         'password': 'tailor2', 
         'simpleBlouse': 'false',
-        'designerBlouse':'true'
+        'designerBlouse':'true',
+        'kurta':'true',
+        'gharara':'true',
+        'sharara':'false',
+        'pyjamas':'true'
     },
     {
         'id': 3, 
@@ -21,7 +29,11 @@ export default Tailors = [
         'username': 'tailor3', 
         'password': 'tailor3', 
         'simpleBlouse': 'true',
-        'designerBlouse':'true'
+        'designerBlouse':'true',
+        'kurta':'true',
+        'gharara':'false',
+        'sharara':'true',
+        'pyjamas':'false'
     },
     {
         'id': 4, 
@@ -29,6 +41,10 @@ export default Tailors = [
         'username': 'tailor4', 
         'password': 'tailor4', 
         'simpleBlouse': 'true',
-        'designerBlouse':'false'
+        'designerBlouse':'false',
+        'kurta':'false',
+        'gharara':'true',
+        'sharara':'false',
+        'pyjamas':'true'
     }
 ];
