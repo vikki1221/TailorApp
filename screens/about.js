@@ -1,7 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View ,Image,FlatList,TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View ,Image,FlatList,TouchableOpacity,StatusBar,SafeAreaView,ScrollView,ImageBackground} from 'react-native';
 import { globalStyles } from '../styles/global';
-
+import Tailors from "../model/tailors";
+import Products from "../model/products";
+import {Card} from 'react-native-shadow-cards';
+const TAILORS = Tailors
+const PRODUCTS = Products
 const DATA = [
   {
     id: "1",
@@ -26,71 +30,130 @@ export default function About({navigation}) {
         return (
           <View style={styles.item}>
             <TouchableOpacity onPress={() => navigation.navigate("WomenItem",{gender:item.val})  }>
-            <Image style = {styles.image}
-             source={require('../assets/male.png')}
+            <Image style={styles.image}source={require('../assets/male.png')}
       />
           <Text>{item.title}</Text>
           </TouchableOpacity>
             </View>
         );
       };
+      const renderTailor = ({item})=>{
+        return (
+          // <View style={styles.tailorContainer}>
+            <Card style={{padding: 10, margin: 15, borderRadius:15,width:270}}>
+            <TouchableOpacity onPress={() => navigation.navigate("WomenItem",{gender:item.val})  }>
+            <Image style={styles.tailorimage}source={require('../assets/Tailors.jpg')}
+      />
+          <Text>{item.username}</Text>
+          </TouchableOpacity>
+          </Card>
+            // </View>
+        );
+      }
+      const renderProduct = ({item})=>{
+        return (
+          // <View style={styles.productContainer}>
+          <Card style={{padding: 10, margin: 15, borderRadius:15,width:200}}>
+            <TouchableOpacity onPress={() => navigation.navigate("ListTailors",{selectedItem:item.val})  }>
+      
+          
+          <ImageBackground source={require('../assets/images.png')} resizeMode="cover" style={styles.productimage}>
+          <Text style={styles.productText}>{item.title}</Text>
+    </ImageBackground>
+          </TouchableOpacity>
+          </Card>
+            // </View>
+        );
+      }
   return (
-    <View style={styles.container}>
-       <FlatList
+    <SafeAreaView style={styles.container}>
+        <ScrollView>
+   
+            <FlatList
           data={DATA}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
-          numColumns={numcolums}
+          horizontal
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
         />
-  </View>
+         <Text style={styles.heading}>Tailors Near By</Text>
+            <FlatList
+          data={TAILORS}
+          renderItem={renderTailor}
+          keyExtractor={(item) => item.id}
+          horizontal
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+        />
+        <Text style={styles.heading}>Our Services</Text>
+         <FlatList
+          data={PRODUCTS}
+          renderItem={renderProduct}
+          keyExtractor={(item) => item.id}
+          horizontal
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+        />
+        </ScrollView>
+  </SafeAreaView>
       
   );
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    height: "100%",
-    textAlign: "center"
+    marginTop: StatusBar.currentHeight || 0,
   },
-  image: {
-    flex: 1,
+image:{
+height:100,
+width:100,
+borderRadius:50
+},
+heading:{
+  fontSize:20,
+  marginVertical: 8,
+  marginHorizontal: 10,
+},
+productimage:{
+    height:200,
+    width:200,
     justifyContent: "center",
-    height:100,
-    width:100,
-    borderRadius:50
+
+},
+  item:{
+    marginVertical: 8,
+    marginHorizontal: 10,
   },
-  marginofbutton :{
-    alignItems:"center"
+  productContainer:{
+    marginVertical: 8,
+    marginHorizontal: 10,
+    backgroundColor:'#FFFFFF',
+    height:200,
+    width:200,
+    textAlign: "center",
   },
-  text: {
+  productText:{
     color: "white",
-    fontSize: 42,
-    lineHeight: 84,
+    fontSize: 22,
+    lineHeight: 44,
     fontWeight: "bold",
     textAlign: "center",
     backgroundColor: "#000000c0"
   },
-  buttonContainer: {
-    height:45,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom:20,
+  tailorContainer:{
+    marginVertical: 8,
+    marginHorizontal: 10,
+    backgroundColor:'#FFFFFF',
+    height:250,
     width:250,
-    borderRadius:30,
-  },
-  loginButton: {
-    backgroundColor: "#00b5ec",
-  },
-  loginText: {
-    color: 'white',
-  },
-  item:{
-    fontWeight: "bold",
     textAlign: "center",
-    justifyContent: 'center',
-    margin:20,
-    alignItems: "center",
   },
+  tailorimage:{
+    width:250,
+    justifyContent: "center",
+
+},
   });
+
+  
