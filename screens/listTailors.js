@@ -29,7 +29,7 @@ export default function listTailors({route,navigation}){
         if(item[selectedItem] == 'true' ){
             return (
               <View >
-                   <TouchableOpacity onPress={()=>console.log(item.id)}>
+                   <TouchableOpacity onPress={() => navigation.navigate("TailorDetails",{tailorId:item.id, name:item.username})  }>
                     <Card style={{padding: 10, margin: 20, borderRadius:15}}>
                         <View style={styles.images} onLayout={(event)=> setWidth(event.nativeEvent.layout.width)}>
                             <SliderBox images={item.images} 

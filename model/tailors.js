@@ -37,6 +37,7 @@ export default Tailors = [
         'blazer':'false',
         'suit':'true',
         'images': [
+            require('../assets/female.png'),
             "https://source.unsplash.com/1024x768/?nature",
             "https://source.unsplash.com/1024x768/?water",
             "https://source.unsplash.com/1024x768/?girl",
@@ -60,6 +61,7 @@ export default Tailors = [
         'blazer':'true',
         'suit':'true',
         'images': [
+            require('../assets/male.png'),
             "https://source.unsplash.com/1024x768/?nature",
             "https://source.unsplash.com/1024x768/?water",
             "https://source.unsplash.com/1024x768/?girl",
@@ -83,6 +85,7 @@ export default Tailors = [
         'blazer':'true',
         'suit':'false',
         'images': [
+            require('../assets/female.png'),
             "https://source.unsplash.com/1024x768/?nature",
             "https://source.unsplash.com/1024x768/?water",
             "https://source.unsplash.com/1024x768/?girl",
