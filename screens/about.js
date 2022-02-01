@@ -55,10 +55,18 @@ export default function About({navigation}) {
             <TouchableOpacity onPress={() => navigation.navigate("TailorDetails",{tailorId:item.id, name:item.username})  }>
             <Image style={styles.tailorimage} source={item.images[0]}
       />
+          <View style={{flex:1, flexWrap:'wrap'}}>
+            <View>
           <Text style={{marginLeft:12,marginTop:12,fontSize:20, fontWeight:'bold'}}>{item.username}</Text>
+          <View style={styles.ratingBlock}>
+          <Text style={styles.ratingText} >{item.rating}</Text>
+          <FontAwesome name='star' style={styles.iconn}/>
+          </View>
+          </View>
           <View style={styles.addressBlock}>
-          <FontAwesome name='map-marker' style={styles.iconn}/>
+          <FontAwesome name='map-marker' style={styles.locIconn}/>
           <Text style={{marginLeft:10,marginTop:6}}>{item.email}</Text>
+          </View>
           </View>
           </TouchableOpacity>
           </Card>
@@ -68,11 +76,11 @@ export default function About({navigation}) {
       const renderProduct = ({item})=>{
         return (
           // <View style={styles.productContainer}>
-          <Card style={{padding: 10, margin: 15, borderRadius:15,width:200}}>
+          <Card style={{ margin: 15, borderRadius:15,width:200}}>
             <TouchableOpacity onPress={() => navigation.navigate("ListTailors",{selectedItem:item.val})  }>
       
           
-          <ImageBackground source={require('../assets/images.png')} resizeMode="cover" style={styles.productimage}>
+          <ImageBackground imageStyle={{ borderRadius: 15}} source={item.images[0]} resizeMode="cover" style={styles.productimage}>
           <Text style={styles.productText}>{item.title}</Text>
     </ImageBackground>
           </TouchableOpacity>
@@ -175,7 +183,7 @@ productimage:{
 
 },
 
-iconn:{
+locIconn:{
   color:'red',
   marginLeft:15,
   fontSize:20
@@ -188,6 +196,27 @@ addressBlock:{
   flexWrap:'wrap',
   justifyContent: 'center',
   alignContent:'center'
+},
+ratingBlock:{
+  backgroundColor:'#228B22',
+  width:60,
+  height:32,
+  marginLeft:200,
+  marginTop:-30,
+  zIndex:1,
+  borderRadius:5,
+  flex:1,
+  flexWrap:'wrap',
+  justifyContent: 'center',
+  alignContent:'center'
+},
+ratingText:{
+  fontSize:25,
+  color:'white',
+},
+iconn:{
+  color:'white',
+  marginLeft:5
 },
   });
 
