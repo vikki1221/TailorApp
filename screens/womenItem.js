@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
-import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity,Dimensions, View } from "react-native";
+import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity,Dimensions, View,ImageBackground } from "react-native";
 
+import {Card} from 'react-native-shadow-cards';
 import Products from "../model/products";
 
 // const DATA = [
@@ -59,11 +60,21 @@ return <View style={[styles.item,styles.itemInvisible]} />
   }
   else if(item[gender]=='true'){
       return (
-        <View style={styles.item}>
-          <TouchableOpacity onPress={() => navigation.navigate("ListTailors",{selectedItem:item.val})  }>
-        <Text style={styles.itemText}  >{item.title}</Text>
-        </TouchableOpacity>
-          </View>
+        <Card style={styles.item}>
+            <TouchableOpacity onPress={() => navigation.navigate("ListTailors",{selectedItem:item.val})  }>
+      
+          
+          <ImageBackground imageStyle={{ borderRadius: 10}} source={item.images[0]} resizeMode="cover" style={styles.productimage}>
+          <Text style={styles.productText}>{item.title}</Text>
+    </ImageBackground>
+          </TouchableOpacity>
+          </Card>
+
+        // <View style={styles.item}>
+        //   <TouchableOpacity onPress={() => navigation.navigate("ListTailors",{selectedItem:item.val})  }>
+        // <Text style={styles.itemText}  >{item.title}</Text>
+        // </TouchableOpacity>
+        //   </View>
       );
   }
     };
@@ -89,7 +100,6 @@ return <View style={[styles.item,styles.itemInvisible]} />
       marginTop: StatusBar.currentHeight || 0,
     },
     item: {
- backgroundColor:'#f9c2ff',
  alignItems:'center',
  justifyContent:'center',
  flex:1,
@@ -109,8 +119,23 @@ return <View style={[styles.item,styles.itemInvisible]} />
       alignItems:'center',
     },
     heading:{
-      fontSize:20,
-     margin:20
+      fontSize:40,
+     margin:20,
+     fontWeight:'bold'
 
-    }
+    },
+    productimage:{
+      height:190,
+      width:178,
+      justifyContent: "center",
+  
+  },
+  productText:{
+    color: "white",
+    fontSize: 22,
+    lineHeight: 44,
+    fontWeight: "bold",
+    textAlign: "center",
+    backgroundColor: "#000000c0"
+  },
   });
