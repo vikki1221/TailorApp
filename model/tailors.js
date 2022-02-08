@@ -5,9 +5,19 @@ export default Tailors = [
         'username': 'Tailor1 shop', 
         'password': 'tailor1', 
         'rating':5,
+        'products':[
+            {
+                "name": "kurta",
+                "price": "200"
+            },
+            {
+                "name": "sharara",
+                "price": "400"
+            }
+        ],
         'locality':'Mansarovar',
         'city':'Jaipur',
-        'address':'Shop No. 9,Near Raja Park',
+        'address':'Shop No. 8,Near Raja Park',
         'simpleBlouse': 'true',
         'designerBlouse':'false',
         'kurta':'true',
