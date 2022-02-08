@@ -24,19 +24,18 @@ export default function App() {
     <NavigationContainer>
     <Stack.Navigator
      screenOptions={{
-      headerShown: false
     }}>
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen      options={{ headerShown: false }} name="Home" component={Home} />
       
-      <Stack.Screen name="Splash" component={Splash} />
+      <Stack.Screen options={{ headerShown: false }} name="Splash" component={Splash} />
       
-     <Stack.Screen name="Login" component={Login} />
+     <Stack.Screen options={{ headerShown: false }} name="Login" component={Login} />
      
-     <Stack.Screen name="Signup" component={Signup} />
-     <Stack.Screen name="About" component={About} />
-     <Stack.Screen name="WomenItem" component={WomenItem} />
-     <Stack.Screen name="ListTailors" component={ListTailors} />
-     <Stack.Screen name="TailorDetails" component={TailorDetails} />
+     <Stack.Screen options={{ headerShown: false }} name="Signup" component={Signup} />
+     <Stack.Screen options={{ headerShown: false }} name="About" component={About} />
+     <Stack.Screen options={{ headerShown: false }} name="WomenItem" component={WomenItem} />
+     <Stack.Screen options={{ headerShown: false }} name="ListTailors" component={ListTailors} />
+     <Stack.Screen  options={{title: 'Default'}}name="TailorDetails" component={TailorDetails} />
      
 
     </Stack.Navigator>
