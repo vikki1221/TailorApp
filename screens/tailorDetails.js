@@ -28,6 +28,14 @@ export default function TailorDetails({route,navigation}){
     const {name} = route.params;
     navigation.setOptions({title:name});
     const tailors = Tailors;
+  const data1 = tailors.filter(aux =>aux.id == tailorId);
+  //console.log(data1);
+  //console.log(data1["username"]+'data1');
+      // Changing the state after 2 sec
+      // from the time when the component
+      // is rendered
+ 
+
     // console.log(tailors["tailorId"]);
   const [modalVisible, setModalVisible] = useState(false);
     // console.log(tailors[tailorId].images);
@@ -107,26 +115,67 @@ export default function TailorDetails({route,navigation}){
             );
         };
     }
-    const renderProduct = ({item})=>{
-        // console.log(item[products]);
-      if(item["id"] == tailorId ){
-        //   console.log(item["products"]);
-      return (
-        // <View style={styles.productContainer}>
-        <Card style={{ margin: 15, borderRadius:15}}>
-        
-        <Text>Hello</Text>
-        <Pressable
-            style={[styles.button, styles.buttonOpen]}
-            onPress={() => setModalVisible(true)}
-        >
-            <Text style={styles.ratingText}>BOOK NOW</Text>
-        </Pressable>
+    
+    const renderAllProduct = ({item})=>{
 
-        </Card>
-          // </View>
+      //   console.log(item);
+        //   console.log(item["products"]["name"]);
+           let items = [];
+           if( item["products"]) {
+             items = item["products"].map(row => {
+               return ( 
+              
+         <View style={{margin:10}}>
+                 <Text style = {{fontSize:20,padding:10,borderColor:'red',borderWidth:3,borderRadius:30,color:'red'}}>{row.name}</Text>
+                 </View>
+            
+                 );
+             })
+           } 
+       
+       return (
+         <View style={{backgroundColor:'white',marginTop:2}}>
+         <Text style={styles.heading}>My Services</Text>
+         <View style={{flex:1,flexDirection:'row'}}>{items}</View>
+       
+            </View>
+       );
+       
+     }
+
+    const renderProduct = ({item})=>{
+
+     //   console.log(item);
+       //   console.log(item["products"]["name"]);
+          let items = [];
+          if( item["products"]) {
+            items = item["products"].map(row => {
+              return ( 
+             
+                <Card style={{ justifyContent:'center', marginLeft:20, marginBottom:10,marginTop:10, borderRadius:15}}>
+        
+                <Text style = {{fontSize:20,padding:10}}>{row.name}</Text>
+                <Text style = {{fontSize:20,paddingLeft:10}}>{row.price}</Text>
+                <Pressable
+                    style={[styles.button, styles.buttonOpen]}
+                    onPress={() => setModalVisible(true)}
+                >
+                    <Text style={styles.ratingText}>BOOK NOW</Text>
+                </Pressable>
+        
+                </Card>
+                );
+            })
+          } 
+      
+      return (
+        <View>
+        
+        <View>{items}</View>
+      
+           </View>
       );
-      }
+      
     }
 
 
@@ -138,26 +187,20 @@ export default function TailorDetails({route,navigation}){
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
                 />
+                  <FlatList
+                data={tailors.filter(aux =>aux.id == tailorId)}
+                renderItem={renderAllProduct}
+                keyExtractor={(item) => item.id}
+                />
+                <Text style={styles.heading}>Book Your Porducts</Text>
                 <FlatList
-                data={tailors}
+                data={tailors.filter(aux =>aux.id == tailorId)}
                 renderItem={renderProduct}
                 keyExtractor={(item) => item.id}
                 />
             </ScrollView>
         </View>
 
-        // <View>
-        //     <View style={styles.images} >
-        //                     <SliderBox images={tailors[tailorId].images}
-        //                     sliderBoxHeight={200} 
-        //                     dotColor="#FFEE58"
-        //                     inactiveDotColor="#90A4AE"
-        //                     autoplay
-        //                     circleLoop/>
-        //                 </View>
-        //   <Text >tailorId -- {tailorId}</Text>
-        //   <Text >name -- {name}</Text>
-        // </View>
       );
 
 }
@@ -215,6 +258,13 @@ flex:1
         justifyContent: "center",
         alignItems: "center",
         marginTop: 22
+      },
+      heading:{
+        fontSize:30,
+        marginVertical: 8,
+        marginHorizontal: 10,
+        marginLeft:10,
+        fontWeight:'bold'
       },
       modalView: {
         margin: 20,

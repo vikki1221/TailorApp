@@ -7,11 +7,11 @@ export default Tailors = [
         'rating':5,
         'products':[
             {
-                "name": "kurta",
+                "name": "Kurta",
                 "price": "200"
             },
             {
-                "name": "sharara",
+                "name": "Sharara",
                 "price": "400"
             }
         ],
