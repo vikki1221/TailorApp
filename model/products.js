@@ -7,6 +7,9 @@ export default Products = [
       male:'false',
       images: [
         require('../assets/simpleBlouse.png'),
+      ],
+      measurementImages:[
+        require('../assets/blousefrontback.jpg'),
       ]
     },
     {
