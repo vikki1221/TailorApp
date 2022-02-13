@@ -62,12 +62,56 @@ export default function TailorDetails({route,navigation}){
                     >
                         <View style={styles.centeredView}>
                         <View style={styles.modalView}>
+                          <Text>Review</Text>
+                          <ScrollView>
+                            <Text style={styles.modalText}>Blouseadsdaaaaaaaaaaaaaaaaaaaaaa</Text>
+                            
                             <Text style={styles.modalText}>Blouse</Text>
+                            
+                            <Text style={styles.modalText}>Blouse</Text>
+                            
+                            <Text style={styles.modalText}>Blouse</Text>
+                            <Text style={styles.modalText}>Blouseadsdaaaaaaaaaaaaaaaaaaaaaa</Text>
+                            
+                            <Text style={styles.modalText}>Blouse</Text>
+                            
+                            <Text style={styles.modalText}>Blouse</Text>
+                            
+                            <Text style={styles.modalText}>Blouse</Text>
+                            <Text style={styles.modalText}>Blouseadsdaaaaaaaaaaaaaaaaaaaaaa</Text>
+                            
+                            <Text style={styles.modalText}>Blouse</Text>
+                            
+                            <Text style={styles.modalText}>Blouse</Text>
+                            
+                            <Text style={styles.modalText}>Blouse</Text>
+                            <Text style={styles.modalText}>Blouseadsdaaaaaaaaaaaaaaaaaaaaaa</Text>
+                            
+                            <Text style={styles.modalText}>Blouse</Text>
+                            
+                            <Text style={styles.modalText}>Blouse</Text>
+                            
+                            <Text style={styles.modalText}>Blouse</Text>
+                            <Text style={styles.modalText}>Blouseadsdaaaaaaaaaaaaaaaaaaaaaa</Text>
+                            
+                            <Text style={styles.modalText}>Blouse</Text>
+                            
+                            <Text style={styles.modalText}>Blouse</Text>
+                            
+                            <Text style={styles.modalText}>Blouse</Text>
+                            <Text style={styles.modalText}>Blouseadsdaaaaaaaaaaaaaaaaaaaaaa</Text>
+                            
+                            <Text style={styles.modalText}>Blouse</Text>
+                            
+                            <Text style={styles.modalText}>Blouse</Text>
+                            
+                            <Text style={styles.modalText}>Blouse</Text>
+                            </ScrollView>
                             <Pressable
                             style={[styles.button, styles.buttonClose]}
                             onPress={() => setModalVisible(!modalVisible)}
                             >
-                            <Text style={styles.textStyle}>Hide Modal</Text>
+                            <Text style={styles.textStyle}>Back</Text>
                             </Pressable>
                         </View>
                         </View>
@@ -126,7 +170,7 @@ export default function TailorDetails({route,navigation}){
                return ( 
               
          <View style={{margin:10}}>
-                 <Text style = {{fontSize:20,padding:10,borderColor:'red',borderWidth:3,borderRadius:30,color:'red'}}>{row.name}</Text>
+                 <Text style = {{fontSize:20,textAlign:'center',padding:10,borderColor:'red',borderWidth:3,borderRadius:30,color:'red'}}>{row.name}</Text>
                  </View>
             
                  );
@@ -136,7 +180,7 @@ export default function TailorDetails({route,navigation}){
        return (
          <View style={{backgroundColor:'white',marginTop:2}}>
          <Text style={styles.heading}>My Services</Text>
-         <View style={{flex:1,flexDirection:'row'}}>{items}</View>
+         <View style={{flex:1,flexDirection:'row',flexWrap:'wrap'}}>{items}</View>
        
             </View>
        );
@@ -152,15 +196,15 @@ export default function TailorDetails({route,navigation}){
             items = item["products"].map(row => {
               return ( 
              
-                <Card style={{ justifyContent:'center', marginLeft:20, marginBottom:10,marginTop:10, borderRadius:15}}>
+                <Card style={{ justifyContent:'center', marginLeft:20, marginBottom:10,marginTop:10, borderRadius:15,padding:20}}>
         
                 <Text style = {{fontSize:20,padding:10}}>{row.name}</Text>
                 <Text style = {{fontSize:20,paddingLeft:10}}>{row.price}</Text>
                 <Pressable
-                    style={[styles.button, styles.buttonOpen]}
-                    onPress={() => setModalVisible(true)}
+                    style={{backgroundColor:"#fdeb93",height:40,justifyContent:'center',alignContent:'center',borderRadius:10,elevation: 10}}
+                    onPress={()=>navigation.navigate("ProductSpecification",{selectedProduct:row.name})}
                 >
-                    <Text style={styles.ratingText}>BOOK NOW</Text>
+                    <Text style={{textAlign: 'center',color:'red'}}>BOOK NOW</Text>
                 </Pressable>
         
                 </Card>
@@ -277,7 +321,7 @@ flex:1
           width: 0,
           height: 2
         },
-        shadowOpacity: 0.25,
+        shadowOpacity: 0.75,
         shadowRadius: 4,
         elevation: 5
       },

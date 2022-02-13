@@ -13,6 +13,22 @@ export default Tailors = [
             {
                 "name": "Sharara",
                 "price": "400"
+            },
+            {
+                "name": "Kurta",
+                "price": "200"
+            },
+            {
+                "name": "Sharara",
+                "price": "400"
+            },
+            {
+                "name": "Kurta",
+                "price": "200"
+            },
+            {
+                "name": "Sharara",
+                "price": "400"
             }
         ],
         'locality':'Mansarovar',
@@ -40,6 +56,16 @@ export default Tailors = [
         'username': 'Tailor2', 
         'password': 'tailor2',  
         'rating':3,
+        'products':[
+            {
+                "name": "Kurta",
+                "price": "200"
+            },
+            {
+                "name": "Sharara",
+                "price": "400"
+            }
+        ],
         'locality':'Mansarovar',
         'city':'Jaipur',
         'address':'Shop No. 9,Near Raja Park',
@@ -67,6 +93,16 @@ export default Tailors = [
         'username': 'tailor3', 
         'password': 'tailor3', 
         'rating':"4.9", 
+        'products':[
+            {
+                "name": "Kurta",
+                "price": "200"
+            },
+            {
+                "name": "Sharara",
+                "price": "400"
+            }
+        ],
         'locality':'Mansarovar',
         'city':'Jaipur',
         'address':'Shop No. 9,Near Raja Park',
@@ -94,6 +130,16 @@ export default Tailors = [
         'username': 'tailor4', 
         'password': 'tailor4', 
         'rating':1,
+        'products':[
+            {
+                "name": "Kurta",
+                "price": "200"
+            },
+            {
+                "name": "Sharara",
+                "price": "400"
+            }
+        ],
         'locality':'Mansarovar',
         'city':'Jaipur',
         'address':'Shop No. 9,Near Raja Park', 
