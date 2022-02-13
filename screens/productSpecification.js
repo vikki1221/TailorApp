@@ -5,7 +5,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Products from "../model/products";
 import { SliderBox } from "react-native-image-slider-box";
 import { Card } from "react-native-shadow-cards";
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView, TextInput } from "react-native-gesture-handler";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -18,12 +18,12 @@ export default function ProductSpecification({route,navigation}){
     const [height, setHeight] = useState('');
   const [width, setWidth] = useState('');
 
-  useEffect(() => {
-    //Get device Height
-    setHeight(Dimensions.get('window').height);
-    //Get device Width
-    setWidth(Dimensions.get('window').width);
-  }, []);
+//   useEffect(() => {
+//     //Get device Height
+//     setHeight(Dimensions.get('window').height);
+//     //Get device Width
+//     setWidth(Dimensions.get('window').width);
+//   }, []);
 
     const renderProductDetails = ({item})=>{
 
@@ -33,7 +33,7 @@ export default function ProductSpecification({route,navigation}){
              if( item["measurementImages"]) {
                items = item["measurementImages"].map(row => {
                  return ( 
-                    <View  style={{height:height,width:width,backgroundColor:"red"}}>
+                    <View>
                     <Image source={row}
                     />
                     </View>
@@ -51,17 +51,53 @@ export default function ProductSpecification({route,navigation}){
          
        }
    
+       const renderMeasurementDetails = ({item})=>{
+
+        //   console.log(item);
+          //   console.log(item["products"]["name"]);
+             let items = [];
+             if( item["measurement"]) {
+               items = item["measurement"].map(row => {
+                 return ( 
+                    <View> 
+                        <Text>{row}</Text>
+                         <TextInput
+
+                    placeholder={row}
+                    keyboardType="numeric"
+                  />
+                    </View>
+                   );
+               })
+             } 
+         
+         return (
+           <View >
+           
+           <View>{items}</View>
+         
+              </View>
+         );
+         
+       }
 
     return (
         <View style={styles.container}>
+            <ScrollView>
             <View style={{backgroundColor:'#F0FFFF'}}>
+
             <FlatList
                 data={products.filter(aux =>aux.title == selectedProduct)}
                 renderItem={renderProductDetails}
                 keyExtractor={(item) => item.id}
                 />
-         <Text>Hello Kitti</Text>
+                   <FlatList
+                data={products.filter(aux =>aux.title == selectedProduct)}
+                renderItem={renderMeasurementDetails}
+                keyExtractor={(item) => item.id}
+                />
             </View>
+            </ScrollView>
         </View>
 
       );

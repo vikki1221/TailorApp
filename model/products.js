@@ -10,6 +10,12 @@ export default Products = [
       ],
       measurementImages:[
         require('../assets/blousefrontback.jpg'),
+      ],
+      measurement:[
+        'Full Shoulder',
+        'Sleeve',
+        'Bust/Chest',
+        'Arm Hole'
       ]
     },
     {
