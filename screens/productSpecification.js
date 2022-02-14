@@ -6,7 +6,7 @@ import Products from "../model/products";
 import { SliderBox } from "react-native-image-slider-box";
 import { Card } from "react-native-shadow-cards";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
-import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
+//import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
 
 export default function ProductSpecification({route,navigation}){
     const {selectedProduct} = route.params;
@@ -24,11 +24,11 @@ export default function ProductSpecification({route,navigation}){
 // ]
     const renderProductDetails = ({item})=>{ 
          return (
-          //  <Card style={{margin: 15, borderRadius:15,width:300,paddingBottom:10}}>
+         // <Card style={{margin: 15, borderRadius:15,width:"100%",paddingBottom:10}}>
            
-           <View><Image style={{width:"100%"}} source={item.measurementImage}/></View>
+           <View style={{padding:20}}><Image style={{resizeMode: 'stretch',width:'100%',height:250}} source={item.measurementImage}/></View>
          
-              // </Card>
+           //    </Card>
          );
          
        }
