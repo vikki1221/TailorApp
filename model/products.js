@@ -13,6 +13,14 @@ export default Products = [
         'Full Shoulder',
         'Sleeve',
         'Bust/Chest',
+        'Arm Hole',
+        'Full Shoulder',
+        'Sleeve',
+        'Bust/Chest',
+        'Arm Hole',
+        'Full Shoulder',
+        'Sleeve',
+        'Bust/Chest',
         'Arm Hole'
       ]
     },
