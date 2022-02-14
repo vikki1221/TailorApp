@@ -6,47 +6,29 @@ import Products from "../model/products";
 import { SliderBox } from "react-native-image-slider-box";
 import { Card } from "react-native-shadow-cards";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
 
 export default function ProductSpecification({route,navigation}){
     const {selectedProduct} = route.params;
     navigation.setOptions({title:selectedProduct});
     
     const products = Products;
-    const [height, setHeight] = useState('');
-  const [width, setWidth] = useState('');
 
-//   useEffect(() => {
-//     //Get device Height
-//     setHeight(Dimensions.get('window').height);
-//     //Get device Width
-//     setWidth(Dimensions.get('window').width);
-//   }, []);
-
-    const renderProductDetails = ({item})=>{
-
-        //   console.log(item);
-          //   console.log(item["products"]["name"]);
-             let items = [];
-             if( item["measurementImages"]) {
-               items = item["measurementImages"].map(row => {
-                 return ( 
-                    <View>
-                    <Image source={row}
-                    />
-                    </View>
-                   );
-               })
-             } 
-         
+//  HeadTable= ['Head1', 'Head2', 'Head3', 'Head4', 'Head5'],
+//  DataTable= [
+//   ['1', '2', '3', '4', '5'],
+//   ['a', 'b', 'c', 'd', 'e'],
+//   ['1', '2', '3', '4', '5'],
+//   ['a', 'b', 'c', 'd', 'e'],
+//   ['1', '2', '3', '4', '5']
+// ]
+    const renderProductDetails = ({item})=>{ 
          return (
-           <View >
+          //  <Card style={{margin: 15, borderRadius:15,width:300,paddingBottom:10}}>
            
-           <View>{items}</View>
+           <View><Image style={{width:"100%"}} source={item.measurementImage}/></View>
          
-              </View>
+              // </Card>
          );
          
        }
@@ -56,10 +38,20 @@ export default function ProductSpecification({route,navigation}){
         //   console.log(item);
           //   console.log(item["products"]["name"]);
              let items = [];
+             console.log(item["measurement"])
+      //        <Table borderStyle={{borderWidth: 1, borderColor: '#ffa1d2'}}>
+      //   <Row data={item["measurement"]} style={styles.HeadStyle} textStyle={styles.TableText}/>
+      //   {/* <Rows data={DataTable} textStyle={styles.TableText}/> */}
+      //  </Table>
              if( item["measurement"]) {
                items = item["measurement"].map(row => {
+                   console.log(row);
                  return ( 
                     <View> 
+                        {/* <Table borderStyle={{borderWidth: 1, borderColor: '#ffa1d2'}}>
+        <Row data={row} style={styles.HeadStyle} textStyle={styles.TableText}/>
+        {/* <Rows data={DataTable} textStyle={styles.TableText}/> */}
+      {/* </Table> */} 
                         <Text>{row}</Text>
                          <TextInput
 
@@ -108,6 +100,14 @@ const styles = StyleSheet.create({
     container:{
 flex:1
     },
+    HeadStyle: { 
+        height: 50,
+        alignContent: "center",
+        backgroundColor: '#ffe0f0'
+      },
+      TableText: { 
+        margin: 10
+      }
 
 })
 

@@ -8,9 +8,7 @@ export default Products = [
       images: [
         require('../assets/simpleBlouse.png'),
       ],
-      measurementImages:[
-        require('../assets/blousefrontback.jpg'),
-      ],
+      measurementImage:require('../assets/simpleBlouse.png'),
       measurement:[
         'Full Shoulder',
         'Sleeve',
