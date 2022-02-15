@@ -9,6 +9,7 @@ import { ScrollView, TextInput } from "react-native-gesture-handler";
 
 export default function ProductSpecification({route,navigation}){
     const {selectedProduct} = route.params;
+    const [next, setNext] = useState(true);
     navigation.setOptions({title:selectedProduct});
     
     const products = Products;
@@ -83,6 +84,7 @@ export default function ProductSpecification({route,navigation}){
     return (
         <View style={styles.container}>
             <ScrollView>
+            {next ? 
             <View style={{backgroundColor:'#F0FFFF'}}>
 
             <FlatList
@@ -97,11 +99,34 @@ export default function ProductSpecification({route,navigation}){
                 />
                 <Pressable
                     
-                    onPress={()=>navigation.navigate("ProductSpecification",{selectedProduct:row.name})}
+                    onPress={() => setNext(false)}
                 >
-                    <Text style={{textAlign: 'center',color:'red'}}>Next</Text>
+                    <Text style={{color:'black',textAlign:'right',padding:10,fontSize:20}}>Next</Text>
                 </Pressable>
             </View>
+            :<View>
+              <Text>Next Screen</Text>
+              <View style={{flex:1, flexWrap:'wrap',flexDirection:'row',padding:10}}>
+              <View style={{flex:0.5}}>
+                 <Pressable
+                    
+                    onPress={() => setNext(true)}
+                >
+                    <Text style={{color:'black',textAlign:'left',padding:10,fontSize:20}}>Previous</Text>
+                </Pressable>
+                        </View>  
+                        <View style={{flex:0.5}}>
+                 <Pressable
+                    
+                    onPress={() => setNext(true)}
+                >
+                    <Text style={{color:'black',textAlign:'right',padding:10,fontSize:20}}>Submit</Text>
+                </Pressable>
+                        </View>  
+    
+                </View>
+            </View>
+            }
             </ScrollView>
         </View>
 
