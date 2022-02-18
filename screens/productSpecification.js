@@ -6,10 +6,16 @@ import Products from "../model/products";
 import { SliderBox } from "react-native-image-slider-box";
 import { Card } from "react-native-shadow-cards";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
+import * as ImagePicker from "expo-image-picker";
 
 export default function ProductSpecification({route,navigation}){
     const {selectedProduct} = route.params;
-    const [next, setNext] = useState(true);
+    const [next, setNext] = useState(false);
+    const [frontPhoto, setFrontPhoto] = useState(null);
+    const [backPhoto, setBackPhoto] = useState(null);
+    const [otherText, setOtherText] = useState('');
+    const [full, setFull] = useState('');
+    const [arm, setArm] = useState('');
     navigation.setOptions({title:selectedProduct});
     
     const products = Products;
@@ -24,7 +30,47 @@ export default function ProductSpecification({route,navigation}){
          );
          
        }
-   
+       
+      //  const handleChange = ({event})=>{
+      //    console.log(event.target.value);
+      //  }
+
+       const setInputValue = (row, value)=>{
+          // console.log("Text row:" + row);
+          // console.log("Text value:" + value);
+          if(row=="Full Shoulder"){
+            setFull(value);
+            console.log(full);
+          }
+          // const value = event.currentTarget.value;
+          // setOtherText(){
+          //   const otherText = [...state.othertext];
+          //   otherText[row.index] = {
+          //     ...row,
+          //     value
+          //   };
+          //   console.log(otherText);
+          // }
+          // switch(row){
+          //   case "Full Shoulder": setFull{
+          //     full:value;
+          //   }
+          // }
+    // const Textdata = [...otherText]; 
+    // Textdata[i]=value;
+    // console.log(Textdata);
+    // setOtherText(
+    //   {
+    //     otherText: Textdata
+    //   },
+    //   () => {
+    //     console.log("Text data = " + otherText);
+    //   }
+    // );
+
+
+       }
+
        const renderMeasurementDetails = ({item})=>{
 
         //   console.log(item);
@@ -32,8 +78,13 @@ export default function ProductSpecification({route,navigation}){
              let items = [];
              console.log(item["measurement"]);
              if( item["measurement"]) {
+               var i=-1;
                items = item["measurement"].map(row => {
-                   console.log(row);
+                //  console.log(index);
+                i++;
+                console.log(i);
+                 var part = {row}
+                   console.log(part["row"]);
                  return ( 
                     <View> 
                       <View style={{flex:1, flexWrap:'wrap',flexDirection:'row',marginTop:10}}>
@@ -46,6 +97,11 @@ export default function ProductSpecification({route,navigation}){
                             <TextInput
                               placeholder={row}
                               keyboardType="numeric"
+                              onChangeText={value=>setInputValue({row}["row"],value)}
+                              // onChangeText={event=>setInputValue(row,event)}
+                              // value={row.value}
+                              value={otherText[{row}["row"]]}
+                              // onChange={part}
                               />
                             </View>
                         </View>
@@ -81,11 +137,122 @@ export default function ProductSpecification({route,navigation}){
          
        }
 
+       const handleFrontPhoto =async()=>{
+         let result = await ImagePicker.launchImageLibraryAsync({
+           mediaTypes:ImagePicker.MediaTypeOptions.All,
+           allowsEditing:true,
+           aspect:[4,3],
+           quality:1
+         })
+         console.log(result);
+         if(!result.cancelled){
+           setFrontPhoto(result.uri);
+         }
+       }
+
+       const handleBackPhoto =async()=>{
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes:ImagePicker.MediaTypeOptions.All,
+          allowsEditing:true,
+          aspect:[4,3],
+          quality:1
+        })
+        console.log(result);
+        if(!result.cancelled){
+          setBackPhoto(result.uri);
+        }
+      }
+
     return (
         <View style={styles.container}>
             <ScrollView>
             {next ? 
-            <View style={{backgroundColor:'#F0FFFF'}}>
+            <View>
+            <Text style={{marginTop:20,fontSize:25, fontWeight:'bold',textAlign:'center'}}> MORE INFORMATION</Text>
+            
+            <View style={{flex:1, flexDirection:'row'}}>
+            <View style={{flex:0.5,padding:10}}>
+                <Pressable  onPress={handleFrontPhoto} 
+                    style={{marginBottom:15,backgroundColor:"#1E90FF",padding:10,justifyContent:'center',borderRadius:10,elevation: 6}}
+                   >
+                  
+                <Text style={{color:'white',fontSize:15,textAlign:'center'}}>CHOOSE FRONT PHOTO</Text>
+                  </Pressable>
+                {frontPhoto ?
+                <Image source={{uri:frontPhoto}} style={{width:"90%",height:140,alignSelf:'center'}}/>
+                  :<View style={{width:"80%",height:140,justifyContent:"center",alignSelf:'center',
+                  borderColor: 'red',
+                  borderWidth: 1,
+                  borderStyle:'dashed',
+                  borderRadius:1}}>
+                    <Text style={{textAlign:'center'}} >FRONT PHOTO</Text> 
+                    </View>
+              }
+              </View>
+              <View style={{flex:0.5,padding:10}}>
+                <Pressable onPress={handleBackPhoto} 
+                style={{marginBottom:15,backgroundColor:"#1E90FF",padding:10,justifyContent:'center',borderRadius:10,elevation: 6}}
+                   >
+                     <Text style={{color:'white',fontSize:15,textAlign:'center'}}>CHOOSE BACK PHOTO</Text>
+                 
+                  </Pressable>
+                {backPhoto ?
+                <Image source={{uri:backPhoto}} style={{width:"90%",height:140,alignSelf:'center'}}/>
+                :<View style={{width:"80%",height:140,justifyContent:"center",alignSelf:'center',
+                borderColor: 'red',
+                borderWidth: 1,
+                borderStyle:'dashed',
+                borderRadius:1}}>
+                  <Text style={{textAlign:'center'}} >BACK PHOTO</Text> 
+                  </View>
+                }
+              </View>
+            </View>
+            <Text style={{marginLeft:10,marginTop:20,fontSize:20, fontWeight:'bold'}}>ADDITIONAL COMMENTS</Text>
+                        
+            <View style={styles.textAreaContainer}>
+            <TextInput
+      style={styles.textArea}
+            placeholder="bhagggg bhenchod sdkdnskjsksms"
+            multiline={true}
+            numberOfLines={4}
+            />
+            </View>
+            {/* <View style={styles.textAreaContainer} >
+    <TextInput
+      style={styles.textArea}
+      underlineColorAndroid="transparent"
+      placeholder="Type something"
+      placeholderTextColor="grey"
+      numberOfLines={10}
+      multiline={true}
+    />
+  </View> */}
+            
+            
+              
+            <View style={{flex:1, flexWrap:'wrap',flexDirection:'row',padding:10}}>
+            <View style={{flex:0.5}}>
+               <Pressable
+                  
+                  onPress={() => setNext(false)}
+              >
+                  <Text style={{color:'black',textAlign:'left',padding:10,fontSize:20}}>Previous</Text>
+              </Pressable>
+                      </View>  
+                      <View style={{flex:0.5}}>
+               <Pressable
+                  
+                  onPress={() => setNext(true)}
+              >
+                  <Text style={{color:'black',textAlign:'right',padding:10,fontSize:20}}>Submit</Text>
+              </Pressable>
+                      </View>  
+  
+              </View>
+            </View>
+          
+            :<View style={{backgroundColor:'#F0FFFF'}}>
 
             <FlatList
                 data={products.filter(aux =>aux.title == selectedProduct)}
@@ -97,34 +264,25 @@ export default function ProductSpecification({route,navigation}){
                 renderItem={renderMeasurementDetails}
                 keyExtractor={(item) => item.id}
                 />
-                <Pressable
-                    
-                    onPress={() => setNext(false)}
-                >
-                    <Text style={{color:'black',textAlign:'right',padding:10,fontSize:20}}>Next</Text>
-                </Pressable>
-            </View>
-            :<View>
-              <Text>Next Screen</Text>
-              <View style={{flex:1, flexWrap:'wrap',flexDirection:'row',padding:10}}>
-              <View style={{flex:0.5}}>
-                 <Pressable
+                <View style={{flex:1, flexWrap:'wrap',flexDirection:'row',padding:10}}>
+            <View style={{flex:0.8}}>
+               
+                      </View>  
+                      <View style={{flex:0.2}}>
+                      <Pressable
                     
                     onPress={() => setNext(true)}
                 >
-                    <Text style={{color:'black',textAlign:'left',padding:10,fontSize:20}}>Previous</Text>
-                </Pressable>
-                        </View>  
-                        <View style={{flex:0.5}}>
-                 <Pressable
+                  <View style={{ flexDirection: 'row', justifyContent: 'center' } }>
                     
-                    onPress={() => setNext(true)}
-                >
-                    <Text style={{color:'black',textAlign:'right',padding:10,fontSize:20}}>Submit</Text>
+                  <Text style={{color:'black',fontSize:20}}>Next</Text>
+                    <FontAwesome name='arrow-right' style={styles.iconn}/>
+                            </View>
                 </Pressable>
-                        </View>  
-    
-                </View>
+                      </View>  
+  
+              </View>
+                
             </View>
             }
             </ScrollView>
@@ -145,6 +303,22 @@ flex:1
       },
       TableText: { 
         margin: 10
+      },
+      iconn:{
+        color:"black",
+        marginTop:8,
+        marginLeft:7,
+        fontSize:15
+      },
+      textAreaContainer: {
+        margin:10,
+        borderColor: 'red',
+        borderWidth: 1,
+        padding: 5
+      },
+      textArea: {
+        // height: 50, 
+        justifyContent: "flex-start"
       }
 
 })
