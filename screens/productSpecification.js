@@ -7,6 +7,7 @@ import { SliderBox } from "react-native-image-slider-box";
 import { Card } from "react-native-shadow-cards";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import * as ImagePicker from "expo-image-picker";
+import CheckBox from 'react-native-check-box';
 
 export default function ProductSpecification({route,navigation}){
     const {selectedProduct} = route.params;
@@ -137,6 +138,60 @@ export default function ProductSpecification({route,navigation}){
          
        }
 
+       const renderProductAddons = ({item})=>{
+
+        //   console.log(item);
+          //   console.log(item["products"]["name"]);
+             let items = [];
+             console.log(item["measurement"]);
+             if( item["addons"]) {
+               var i=-1;
+               items = item["addons"].map(row => {
+                //  console.log(index);
+                i++;
+                console.log(i);
+                 var part = {row}
+                   console.log(part["row"]);
+                 return ( 
+                    <View> 
+                      {/* <View style={{flex:1, flexWrap:'wrap',flexDirection:'row',marginTop:10}}> */}
+                        <View style={{paddingLeft:15}} >
+                        <CheckBox
+                              // value={isSChecked}
+                              // onValueChange={setSelection}
+                              style={styles.checkbox}
+                              rightText={row}
+                            />
+                        </View>  
+                        {/* <View style={{flex:0.5, flexWrap:'wrap',
+                                borderBottomWidth:1}} >
+                            <View style={{ flexDirection: 'row', justifyContent: 'center' } }>
+                            
+                            <Text style={{fontSize:15}}>{row}</Text>
+                            </View>
+                        </View> */}
+                    </View>
+                    // </View>
+                   );
+               })
+             } 
+         
+         return (
+           <View >
+           {/* <View style={{flex:1, flexWrap:'wrap',flexDirection:'row',backgroundColor:'#a6e4d0',padding:10}}> */}
+           <Text style={{marginLeft:10,marginTop:20,fontSize:20, 
+            fontWeight:'bold'}}>Ask tailor to add these items for your product.</Text>
+            
+                   {/* </View> */}
+           <View style={{padding:10,margin:10}}>{items}</View>
+           <Text style={{margin:10,color:'red'}}>*If not selecting, Please send all extra items like astar etc.</Text>
+               
+         
+              </View>
+         );
+         
+       }
+
        const handleFrontPhoto =async()=>{
          let result = await ImagePicker.launchImageLibraryAsync({
            mediaTypes:ImagePicker.MediaTypeOptions.All,
@@ -233,6 +288,13 @@ export default function ProductSpecification({route,navigation}){
                 }
               </View>
             </View>
+            <View>
+            <FlatList
+                data={products.filter(aux =>aux.title == selectedProduct)}
+                renderItem={renderProductAddons}
+                keyExtractor={(item) => item.id}
+                />
+            </View>
             <Text style={{marginLeft:10,marginTop:20,fontSize:20, fontWeight:'bold'}}>ADDITIONAL COMMENTS</Text>
                         
             <View style={styles.textAreaContainer}>
@@ -262,7 +324,12 @@ export default function ProductSpecification({route,navigation}){
                   
                   onPress={() => setNext(false)}
               >
-                  <Text style={{color:'black',textAlign:'left',padding:10,fontSize:20}}>Previous</Text>
+                <View style={{ flexDirection: 'row', justifyContent: 'center' } }>
+                    
+                <FontAwesome name='arrow-left' style={styles.iconn}/>
+                    
+                  <Text style={{color:'black',textAlign:'left',fontSize:20}}>Previous</Text>
+                              </View>
               </Pressable>
                       </View>  
                       <View style={{flex:0.5}}>

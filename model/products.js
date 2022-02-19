@@ -22,7 +22,8 @@ export default Products = [
         'Sleeve',
         'Bust/Chest',
         'Arm Hole'
-      ]
+      ],
+      addons:['astar','lace'],
     },
     {
       id: "2",
