@@ -168,42 +168,67 @@ export default function ProductSpecification({route,navigation}){
             <ScrollView>
             {next ? 
             <View>
-            <Text style={{marginTop:20,fontSize:25, fontWeight:'bold',textAlign:'center'}}> MORE INFORMATION</Text>
+            {/* <Text style={{marginTop:20,fontSize:25, fontWeight:'bold',textAlign:'center'}}> MORE INFORMATION</Text> */}
             
-            <View style={{flex:1, flexDirection:'row'}}>
+            <Text style={{marginLeft:10,marginTop:20,fontSize:20, fontWeight:'bold'}}>UPLOAD DESIGNS</Text>
+            <View style={{flex:1, flexDirection:'row',backgroundColor:'white',padding:20,margin:10,borderRadius:10}}>
             <View style={{flex:0.5,padding:10}}>
-                <Pressable  onPress={handleFrontPhoto} 
+                {/* <Pressable  onPress={handleFrontPhoto} 
                     style={{marginBottom:15,backgroundColor:"#1E90FF",padding:10,justifyContent:'center',borderRadius:10,elevation: 6}}
                    >
                   
                 <Text style={{color:'white',fontSize:15,textAlign:'center'}}>CHOOSE FRONT PHOTO</Text>
-                  </Pressable>
+                  </Pressable> */}
                 {frontPhoto ?
+                <View>
                 <Image source={{uri:frontPhoto}} style={{width:"90%",height:140,alignSelf:'center'}}/>
+                <Pressable onPress={handleFrontPhoto} 
+                style={{justifyContent:'center'}}
+                   >
+                <Text style={{textAlign:'center'}}>Change Front Photo</Text>
+                </Pressable>
+                </View>
                   :<View style={{width:"80%",height:140,justifyContent:"center",alignSelf:'center',
-                  borderColor: 'red',
-                  borderWidth: 1,
+                  borderColor: '#DCE0DF',
+                  borderWidth: 2,
                   borderStyle:'dashed',
                   borderRadius:1}}>
-                    <Text style={{textAlign:'center'}} >FRONT PHOTO</Text> 
+                    <Pressable  onPress={handleFrontPhoto} 
+                    style={{justifyContent:'center'}}
+                   >
+                        <FontAwesome name='upload' style={{color:'#DCE0DF',textAlign:'center', fontSize:25}}/>
+                        <Text style={{textAlign:'center',color:'#DCE0DF',fontSize:25}} >FRONT PHOTO</Text> 
+                        </Pressable>
                     </View>
               }
               </View>
               <View style={{flex:0.5,padding:10}}>
-                <Pressable onPress={handleBackPhoto} 
+                {/* <Pressable onPress={handleBackPhoto} 
                 style={{marginBottom:15,backgroundColor:"#1E90FF",padding:10,justifyContent:'center',borderRadius:10,elevation: 6}}
                    >
                      <Text style={{color:'white',fontSize:15,textAlign:'center'}}>CHOOSE BACK PHOTO</Text>
                  
-                  </Pressable>
+                  </Pressable> */}
                 {backPhoto ?
+                <View>
                 <Image source={{uri:backPhoto}} style={{width:"90%",height:140,alignSelf:'center'}}/>
+                <Pressable onPress={handleBackPhoto} 
+                style={{justifyContent:'center'}}
+                   >
+                <Text style={{textAlign:'center'}}>Change Back Photo</Text>
+                </Pressable>
+                </View>
                 :<View style={{width:"80%",height:140,justifyContent:"center",alignSelf:'center',
-                borderColor: 'red',
-                borderWidth: 1,
+                borderColor: '#DCE0DF',
+                borderWidth: 2,
                 borderStyle:'dashed',
                 borderRadius:1}}>
-                  <Text style={{textAlign:'center'}} >BACK PHOTO</Text> 
+                   <Pressable onPress={handleBackPhoto} 
+                style={{justifyContent:'center'}}
+                   >
+                       <FontAwesome name='upload' style={{color:'#DCE0DF',textAlign:'center', fontSize:25}}/>
+                  <Text style={{textAlign:'center',color:'#DCE0DF',fontSize:25}} >BACK PHOTO</Text> 
+                  </Pressable>
                   </View>
                 }
               </View>
@@ -312,8 +337,8 @@ flex:1
       },
       textAreaContainer: {
         margin:10,
-        borderColor: 'red',
-        borderWidth: 1,
+        borderColor: '#DCE0DF',
+        borderWidth: 2,
         padding: 5
       },
       textArea: {

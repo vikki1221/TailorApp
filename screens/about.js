@@ -1,14 +1,17 @@
-import React from 'react';
-import { StyleSheet, Text, View ,Image,FlatList,TouchableOpacity,StatusBar,SafeAreaView,ScrollView,ImageBackground} from 'react-native';
+import React,{useEffect,useState} from 'react';
+import { StyleSheet, Text, View ,Image,FlatList,TouchableOpacity,StatusBar,SafeAreaView,ScrollView,ImageBackground, Platform, ImagePickerIOS} from 'react-native';
 import { globalStyles } from '../styles/global';
 import Tailors from "../model/tailors";
 import Products from "../model/products";
 import {Card} from 'react-native-shadow-cards';
-
+import * as ImagePicker from 'expo-image-picker';
+import * as Location from 'expo-location';
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 const TAILORS = Tailors
 const PRODUCTS = Products
+
+
 const DATA = [
   {
     'id': "1",
@@ -36,6 +39,31 @@ const DATA = [
 
 const numcolums = DATA.length
 export default function About({navigation}) {
+  const [location, setLocation] = useState(null);
+const [errorMsg, setErrorMsg] = useState(null);
+
+useEffect(() => {
+  (async () => {
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== 'granted') {
+      setErrorMsg('Permission to access location was denied');
+      return;
+    }
+
+    let location = await Location.getCurrentPositionAsync({});
+    setLocation(location);
+    console.log(location);
+  })();
+}, []);
+  useEffect(async () =>{
+    if(Platform.OS!=='web'){
+      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      console.log(status)
+      if(status !== 'granted'){
+        alert('Permission denied')
+      }
+    }
+  },[])
   const renderItem = ({ item }) => {
 
         return (
