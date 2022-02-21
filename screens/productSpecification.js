@@ -316,28 +316,29 @@ export default function ProductSpecification({route,navigation}){
     />
   </View> */}
             
-            
-              
             <View style={{flex:1, flexWrap:'wrap',flexDirection:'row',padding:10}}>
-            <View style={{flex:0.5}}>
+            <View style={{flex:0.3}}>
                <Pressable
                   
                   onPress={() => setNext(false)}
               >
                 <View style={{ flexDirection: 'row', justifyContent: 'center' } }>
                     
-                <FontAwesome name='arrow-left' style={styles.iconn}/>
+                <FontAwesome name='arrow-left' style={styles.lefticonn}/>
                     
-                  <Text style={{color:'black',textAlign:'left',fontSize:20}}>Previous</Text>
+                  <Text style={{color:'black',fontSize:20}}>Previous</Text>
                               </View>
               </Pressable>
                       </View>  
-                      <View style={{flex:0.5}}>
+<View style={{flex:0.5}}>
+
+</View>
+                      <View style={{flex:0.2}}>
                <Pressable
                   
                   onPress={() => setNext(true)}
               >
-                  <Text style={{color:'black',textAlign:'right',padding:10,fontSize:20}}>Submit</Text>
+                  <Text style={{color:'black',fontSize:20}}>Submit</Text>
               </Pressable>
                       </View>  
   
@@ -411,7 +412,13 @@ flex:1
       textArea: {
         // height: 50, 
         justifyContent: "flex-start"
-      }
+      },
+      lefticonn:{
+        color:"black",
+        marginTop:8,
+        fontSize:15,
+        marginRight:7
+      },
 
 })
 
