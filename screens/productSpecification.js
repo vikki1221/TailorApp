@@ -14,79 +14,39 @@ export default function ProductSpecification({route,navigation}){
     const [next, setNext] = useState(false);
     const [frontPhoto, setFrontPhoto] = useState(null);
     const [backPhoto, setBackPhoto] = useState(null);
-    const [otherText, setOtherText] = useState('');
+    const [otherText, setOtherText] = useState([]);
+    const [addOnns, setAddOnns] = useState([]);
     const [full, setFull] = useState('');
     const [arm, setArm] = useState('');
     navigation.setOptions({title:selectedProduct});
     
     const products = Products;
-
+ 
+  
     const renderProductDetails = ({item})=>{ 
-         return (
-         // <Card style={{margin: 15, borderRadius:15,width:"100%",paddingBottom:10}}>
-           
+         return (        
            <View style={{padding:20,paddingLeft:40,paddingRight:40}}><Image style={{resizeMode: 'stretch',width:'100%',height:250}} source={item.measurementImage}/></View>
-         
-           //    </Card>
          );
          
        }
-       
-      //  const handleChange = ({event})=>{
-      //    console.log(event.target.value);
-      //  }
 
-       const setInputValue = (row, value)=>{
-          // console.log("Text row:" + row);
-          // console.log("Text value:" + value);
-          if(row=="Full Shoulder"){
-            setFull(value);
-            console.log(full);
-          }
-          // const value = event.currentTarget.value;
-          // setOtherText(){
-          //   const otherText = [...state.othertext];
-          //   otherText[row.index] = {
-          //     ...row,
-          //     value
-          //   };
-          //   console.log(otherText);
-          // }
-          // switch(row){
-          //   case "Full Shoulder": setFull{
-          //     full:value;
-          //   }
-          // }
-    // const Textdata = [...otherText]; 
-    // Textdata[i]=value;
-    // console.log(Textdata);
-    // setOtherText(
-    //   {
-    //     otherText: Textdata
-    //   },
-    //   () => {
-    //     console.log("Text data = " + otherText);
-    //   }
-    // );
-
-
+       const setInputValue = (index, value)=>{
+        console.log("Text Index:" + index);
+        const newArr = [...otherText];
+        newArr[index] = value;
+        setOtherText(newArr);
+         console.log(newArr);
        }
 
        const renderMeasurementDetails = ({item})=>{
-
-        //   console.log(item);
-          //   console.log(item["products"]["name"]);
              let items = [];
              console.log(item["measurement"]);
              if( item["measurement"]) {
-               var i=-1;
-               items = item["measurement"].map(row => {
-                //  console.log(index);
-                i++;
+            items =  item["measurement"].map((row,i) => {
                 console.log(i);
                  var part = {row}
                    console.log(part["row"]);
-                 return ( 
+                 return( 
                     <View> 
                       <View style={{flex:1, flexWrap:'wrap',flexDirection:'row',marginTop:10}}>
                         <View style={{flex:0.6,paddingLeft:15}} >
@@ -98,25 +58,16 @@ export default function ProductSpecification({route,navigation}){
                             <TextInput
                               placeholder={row}
                               keyboardType="numeric"
-                              onChangeText={value=>setInputValue({row}["row"],value)}
-                              // onChangeText={event=>setInputValue(row,event)}
-                              // value={row.value}
-                              value={otherText[{row}["row"]]}
-                              // onChange={part}
+                              onChangeText={(val)=>setInputValue(i,val)}
+                              value={otherText[i]} 
                               />
                             </View>
                         </View>
                     </View>
-                        {/* <Text>{row}</Text>
-                         <TextInput
-
-                    placeholder={row}
-                    keyboardType="numeric"
-                  /> */}
                     </View>
                    );
                })
-             } 
+             }
          
          return (
            <View style={{margin:10,borderWidth:2}}>
@@ -138,17 +89,20 @@ export default function ProductSpecification({route,navigation}){
          
        }
 
+       const setaddOnnsInputValue = (index, value)=>{
+        console.log("Text Index:" + index);
+        const newArr = [...otherText];
+        newArr[index] = value;
+        setOtherText(newArr);
+         console.log(newArr);
+       }
+
        const renderProductAddons = ({item})=>{
 
-        //   console.log(item);
-          //   console.log(item["products"]["name"]);
              let items = [];
              console.log(item["measurement"]);
              if( item["addons"]) {
-               var i=-1;
-               items = item["addons"].map(row => {
-                //  console.log(index);
-                i++;
+               items = item["addons"].map((row,i) => {
                 console.log(i);
                  var part = {row}
                    console.log(part["row"]);
@@ -158,18 +112,11 @@ export default function ProductSpecification({route,navigation}){
                         <View style={{paddingLeft:15}} >
                         <CheckBox
                               // value={isSChecked}
-                              // onValueChange={setSelection}
+                              onValueChange={(val=>setaddOnnsInputValue(i,val))}
                               style={styles.checkbox}
                               rightText={row}
                             />
                         </View>  
-                        {/* <View style={{flex:0.5, flexWrap:'wrap',
-                                borderBottomWidth:1}} >
-                            <View style={{ flexDirection: 'row', justifyContent: 'center' } }>
-                            
-                            <Text style={{fontSize:15}}>{row}</Text>
-                            </View>
-                        </View> */}
                     </View>
                     // </View>
                    );
@@ -305,16 +252,7 @@ export default function ProductSpecification({route,navigation}){
             numberOfLines={4}
             />
             </View>
-            {/* <View style={styles.textAreaContainer} >
-    <TextInput
-      style={styles.textArea}
-      underlineColorAndroid="transparent"
-      placeholder="Type something"
-      placeholderTextColor="grey"
-      numberOfLines={10}
-      multiline={true}
-    />
-  </View> */}
+  
             
             <View style={{flex:1, flexWrap:'wrap',flexDirection:'row',padding:10}}>
             <View style={{flex:0.3}}>
