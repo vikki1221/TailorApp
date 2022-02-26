@@ -202,7 +202,7 @@ export default function TailorDetails({route,navigation}){
                 <Text style = {{fontSize:20,paddingLeft:10}}>{row.price}</Text>
                 <Pressable
                     style={{backgroundColor:"#fdeb93",height:40,justifyContent:'center',alignContent:'center',borderRadius:10,elevation: 10}}
-                    onPress={()=>navigation.navigate("ProductSpecification",{selectedProduct:row.name})}
+                    onPress={()=>navigation.navigate("ProductSpecification",{selectedProduct:row.name,tailorName:name,productPrice:row.price})}
                 >
                     <Text style={{textAlign: 'center',color:'red'}}>BOOK NOW</Text>
                 </Pressable>

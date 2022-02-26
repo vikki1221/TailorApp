@@ -11,6 +11,8 @@ import CheckBox from 'react-native-check-box';
 
 export default function ProductSpecification({route,navigation}){
     const {selectedProduct} = route.params;
+    const {tailorName} = route.params;
+    const {productPrice} = route.params;
     const [next, setNext] = useState(false);
     const [frontPhoto, setFrontPhoto] = useState(null);
     const [backPhoto, setBackPhoto] = useState(null);
@@ -274,7 +276,7 @@ export default function ProductSpecification({route,navigation}){
                       <View style={{flex:0.2}}>
                <Pressable
                   
-                  onPress={() => navigation.navigate("Cart",{Product:selectedProduct})}
+                  onPress={() => navigation.navigate("Cart",{Product:selectedProduct,tailorName:tailorName,productPrice:productPrice})}
               >
                   <Text style={{color:'black',fontSize:20}}>Proceed</Text>
               </Pressable>
