@@ -274,9 +274,9 @@ export default function ProductSpecification({route,navigation}){
                       <View style={{flex:0.2}}>
                <Pressable
                   
-                  onPress={() => setNext(true)}
+                  onPress={() => navigation.navigate("Cart",{Product:selectedProduct})}
               >
-                  <Text style={{color:'black',fontSize:20}}>Submit</Text>
+                  <Text style={{color:'black',fontSize:20}}>Proceed</Text>
               </Pressable>
                       </View>  
   

@@ -8,7 +8,7 @@ import WomenItem from './screens/womenItem';
 import ListTailors from './screens/listTailors';
 import TailorDetails from './screens/tailorDetails';
 import ProductSpecification from './screens/productSpecification';
-
+import Cart from './screens/cart';
 import Splash from './screens/splash';
 //import Navigator from './routes/homeStack'
 
@@ -38,6 +38,7 @@ export default function App() {
      <Stack.Screen options={{ headerShown: false }} name="ListTailors" component={ListTailors} />
      <Stack.Screen  options={{title: 'Default'}}name="TailorDetails" component={TailorDetails} />
      <Stack.Screen  options={{title: 'Default'}}name="ProductSpecification" component={ProductSpecification} />
+     <Stack.Screen  options={{title: 'My Cart'}}name="Cart" component={Cart} />
      
 
     </Stack.Navigator>
