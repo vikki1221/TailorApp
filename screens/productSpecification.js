@@ -10,162 +10,153 @@ import * as ImagePicker from "expo-image-picker";
 import CheckBox from 'react-native-check-box';
 
 export default function ProductSpecification({route,navigation}){
-    const {selectedProduct} = route.params;
-    const {tailorName} = route.params;
-    const {productPrice} = route.params;
-    const [next, setNext] = useState(false);
-    const [frontPhoto, setFrontPhoto] = useState(null);
-    const [backPhoto, setBackPhoto] = useState(null);
-    const [otherText, setOtherText] = useState([]);
-    const [addOnns, setAddOnns] = useState([]);
-    const [full, setFull] = useState('');
-    const [arm, setArm] = useState('');
-    navigation.setOptions({title:selectedProduct});
-    
-    const products = Products;
- 
+  const {selectedProduct} = route.params;
+  const {tailorName} = route.params;
+  const {productPrice} = route.params;
+  const [next, setNext] = useState(false);
+  const [frontPhoto, setFrontPhoto] = useState(null);
+  const [backPhoto, setBackPhoto] = useState(null);
+  const [otherText, setOtherText] = useState([]);
+  const [addOnns, setAddOnns] = useState([]);
+  const [full, setFull] = useState('');
+  const [arm, setArm] = useState('');
+  navigation.setOptions({title:selectedProduct});
   
-    const renderProductDetails = ({item})=>{ 
-         return (        
-           <View style={{padding:20,paddingLeft:40,paddingRight:40}}><Image style={{resizeMode: 'stretch',width:'100%',height:250}} source={item.measurementImage}/></View>
-         );
-         
-       }
+  const products = Products;
 
-       const setInputValue = (index, value)=>{
-        console.log("Text Index:" + index);
-        const newArr = [...otherText];
-        newArr[index] = value;
-        setOtherText(newArr);
-         console.log(newArr);
-       }
 
-       const renderMeasurementDetails = ({item})=>{
-             let items = [];
-             console.log(item["measurement"]);
-             if( item["measurement"]) {
-            items =  item["measurement"].map((row,i) => {
-                console.log(i);
-                 var part = {row}
-                   console.log(part["row"]);
-                 return( 
-                    <View> 
-                      <View style={{flex:1, flexWrap:'wrap',flexDirection:'row',marginTop:10}}>
-                        <View style={{flex:0.6,paddingLeft:15}} >
-                             <Text style={{fontSize:15}}>{row}</Text>
-                        </View>  
-                        <View style={{flex:0.25, flexWrap:'wrap',
-                                borderBottomWidth:1}} >
-                            <View style={{ flexDirection: 'row', justifyContent: 'center' } }>
-                            <TextInput
-                              placeholder={row}
-                              keyboardType="numeric"
-                              onChangeText={(val)=>setInputValue(i,val)}
-                              value={otherText[i]} 
-                              />
-                            </View>
-                        </View>
-                    </View>
-                    </View>
-                   );
-               })
-             }
-         
-         return (
-           <View style={{margin:10,borderWidth:2}}>
-           <View style={{flex:1, flexWrap:'wrap',flexDirection:'row',backgroundColor:'#a6e4d0',padding:10}}>
-                        <View style={{flex:0.6,paddingLeft:15}} >
-                             <Text style={{fontSize:15, fontWeight:'bold'}}>CUSTOM MEASUREMENTS</Text>
-                        </View>  
-                        <View style={{flex:0.25, flexWrap:'wrap'}} >
-                            <View style={{ flexDirection: 'row', justifyContent: 'center' } }>
-                            
-                            <Text style={{fontSize:15, fontWeight:'bold'}}>(in cms)</Text>
-                            </View>
-                        </View>
-                    </View>
-           <View style={{padding:10,margin:10}}>{items}</View>
-         
+  const renderProductDetails = ({item})=>{ 
+    return (        
+      <View style={{padding:20,paddingLeft:40,paddingRight:40}}>
+        <Image style={{resizeMode: 'stretch',width:'100%',height:250}} source={item.measurementImage}/>
+      </View>
+    );   
+  }
+
+  const setInputValue = (index, value)=>{
+    console.log("Text Index:" + index);
+    const newArr = [...otherText];
+    newArr[index] = value;
+    setOtherText(newArr);
+    console.log(newArr);
+  }
+
+  const renderMeasurementDetails = ({item})=>{
+    let items = [];
+    console.log(item["measurement"]);
+    if( item["measurement"]) { 
+      items =  item["measurement"].map((row,i) => {
+        console.log(i);
+        var part = {row}
+        console.log(part["row"]);
+        return( 
+          <View> 
+            <View style={{flex:1, flexWrap:'wrap',flexDirection:'row',marginTop:10}}>
+              <View style={{flex:0.6,paddingLeft:15}} >
+                    <Text style={{fontSize:15}}>{row}</Text>
+              </View>  
+              <View style={{flex:0.25, flexWrap:'wrap',
+                      borderBottomWidth:1}} >
+                  <View style={{ flexDirection: 'row', justifyContent: 'center' } }>
+                    <TextInput
+                      placeholder={row}
+                      keyboardType="numeric"
+                      onChangeText={(val)=>setInputValue(i,val)}
+                      value={otherText[i]} 
+                      />
+                  </View>
               </View>
-         );
-         
-       }
-
-       const setaddOnnsInputValue = (index, value)=>{
-        console.log("Text Index:" + index);
-        const newArr = [...otherText];
-        newArr[index] = value;
-        setOtherText(newArr);
-         console.log(newArr);
-       }
-
-       const renderProductAddons = ({item})=>{
-
-             let items = [];
-             console.log(item["measurement"]);
-             if( item["addons"]) {
-               items = item["addons"].map((row,i) => {
-                console.log(i);
-                 var part = {row}
-                   console.log(part["row"]);
-                 return ( 
-                    <View> 
-                      {/* <View style={{flex:1, flexWrap:'wrap',flexDirection:'row',marginTop:10}}> */}
-                        <View style={{paddingLeft:15}} >
-                        <CheckBox
-                              // value={isSChecked}
-                              onValueChange={(val=>setaddOnnsInputValue(i,val))}
-                              style={styles.checkbox}
-                              rightText={row}
-                            />
-                        </View>  
-                    </View>
-                    // </View>
-                   );
-               })
-             } 
-         
-         return (
-           <View >
-           {/* <View style={{flex:1, flexWrap:'wrap',flexDirection:'row',backgroundColor:'#a6e4d0',padding:10}}> */}
-           <Text style={{marginLeft:10,marginTop:20,fontSize:20, 
-            fontWeight:'bold'}}>Ask tailor to add these items for your product.</Text>
-            
-                   {/* </View> */}
-           <View style={{padding:10,margin:10}}>{items}</View>
-           <Text style={{margin:10,color:'red'}}>*If not selecting, Please send all extra items like astar etc.</Text>
-               
-         
+            </View>
+          </View>
+        );
+      })
+    }
+    return (
+      <View style={{margin:10,borderWidth:2}}>
+        <View style={{flex:1, flexWrap:'wrap',flexDirection:'row',backgroundColor:'#a6e4d0',padding:10}}>
+          <View style={{flex:0.6,paddingLeft:15}} >
+                <Text style={{fontSize:15, fontWeight:'bold'}}>CUSTOM MEASUREMENTS</Text>
+          </View>  
+          <View style={{flex:0.25, flexWrap:'wrap'}} >
+              <View style={{ flexDirection: 'row', justifyContent: 'center' } }>
+                <Text style={{fontSize:15, fontWeight:'bold'}}>(in cms)</Text>
               </View>
-         );
-         
-       }
+          </View>
+        </View>
+        <View style={{padding:10,margin:10}}>{items}</View>
+      </View>
+    );
+  }
 
-       const handleFrontPhoto =async()=>{
-         let result = await ImagePicker.launchImageLibraryAsync({
-           mediaTypes:ImagePicker.MediaTypeOptions.All,
-           allowsEditing:true,
-           aspect:[4,3],
-           quality:1
-         })
-         console.log(result);
-         if(!result.cancelled){
-           setFrontPhoto(result.uri);
-         }
-       }
+  const setaddOnnsInputValue = (index, value)=>{
+    console.log("Text Index:" + index);
+    const newArr = [...otherText];
+    newArr[index] = value;
+    setOtherText(newArr);
+    console.log(newArr);
+  }
 
-       const handleBackPhoto =async()=>{
-        let result = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes:ImagePicker.MediaTypeOptions.All,
-          allowsEditing:true,
-          aspect:[4,3],
-          quality:1
-        })
-        console.log(result);
-        if(!result.cancelled){
-          setBackPhoto(result.uri);
-        }
-      }
+  const renderProductAddons = ({item})=>{
+    let items = [];
+    console.log(item["measurement"]);
+    if( item["addons"]) {
+      items = item["addons"].map((row,i) => {
+        console.log(i);
+        var part = {row}
+        console.log(part["row"]);
+        return ( 
+          <View> 
+            {/* <View style={{flex:1, flexWrap:'wrap',flexDirection:'row',marginTop:10}}> */}
+              <View style={{paddingLeft:15}} >
+              <CheckBox
+                    // value={isSChecked}
+                    onValueChange={(val=>setaddOnnsInputValue(i,val))}
+                    style={styles.checkbox}
+                    rightText={row}
+                  />
+              </View>  
+          </View>
+          // </View>
+          );
+      })
+    } 
+    return (
+      <View >
+      {/* <View style={{flex:1, flexWrap:'wrap',flexDirection:'row',backgroundColor:'#a6e4d0',padding:10}}> */}
+        <Text style={{marginLeft:10,marginTop:20,fontSize:20, 
+        fontWeight:'bold'}}>Ask tailor to add these items for your product.</Text>
+        {/* </View> */}
+        <View style={{padding:10,margin:10}}>{items}</View>
+        <Text style={{margin:10,color:'red'}}>*If not selecting, Please send all extra items like astar etc.</Text>
+      </View>
+    );
+  }
+
+  const handleFrontPhoto =async()=>{
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes:ImagePicker.MediaTypeOptions.All,
+      allowsEditing:true,
+      aspect:[4,3],
+      quality:1
+    })
+    console.log(result);
+    if(!result.cancelled){
+      setFrontPhoto(result.uri);
+    }
+  }
+
+  const handleBackPhoto =async()=>{
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes:ImagePicker.MediaTypeOptions.All,
+      allowsEditing:true,
+      aspect:[4,3],
+      quality:1
+    })
+    console.log(result);
+    if(!result.cancelled){
+      setBackPhoto(result.uri);
+    }
+  }
 
     return (
         <View style={styles.container}>
@@ -326,40 +317,39 @@ export default function ProductSpecification({route,navigation}){
 }
 
 const styles = StyleSheet.create({
-    container:{
-flex:1
-    },
-    HeadStyle: { 
-        height: 50,
-        alignContent: "center",
-        backgroundColor: '#ffe0f0'
-      },
-      TableText: { 
-        margin: 10
-      },
-      iconn:{
-        color:"black",
-        marginTop:8,
-        marginLeft:7,
-        fontSize:15
-      },
-      textAreaContainer: {
-        margin:10,
-        borderColor: '#DCE0DF',
-        borderWidth: 2,
-        padding: 5
-      },
-      textArea: {
-        // height: 50, 
-        justifyContent: "flex-start"
-      },
-      lefticonn:{
-        color:"black",
-        marginTop:8,
-        fontSize:15,
-        marginRight:7
-      },
-
+  container:{
+  flex:1
+  },
+  HeadStyle: { 
+    height: 50,
+    alignContent: "center",
+    backgroundColor: '#ffe0f0'
+  },
+  TableText: { 
+    margin: 10
+  },
+  iconn:{
+    color:"black",
+    marginTop:8,
+    marginLeft:7,
+    fontSize:15
+  },
+  textAreaContainer: {
+    margin:10,
+    borderColor: '#DCE0DF',
+    borderWidth: 2,
+    padding: 5
+  },
+  textArea: {
+    // height: 50, 
+    justifyContent: "flex-start"
+  },
+  lefticonn:{
+    color:"black",
+    marginTop:8,
+    fontSize:15,
+    marginRight:7
+  },
 })
 
 

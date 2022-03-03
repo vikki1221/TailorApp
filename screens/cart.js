@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { FlatList,Alert,Modal,Pressable, SafeAreaView, StatusBar,ImageBackground, StyleSheet,Image, Text,useWindowDimensions ,TouchableOpacity,Dimensions, View, Button } from "react-native";
 import { Card } from "react-native-shadow-cards";
 import products from "../model/products";
-
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 export default function ProductSpecification({route,navigation}){
@@ -11,19 +10,16 @@ export default function ProductSpecification({route,navigation}){
     const {productPrice} = route.params;
     const Products = products;
     const [image,setImage] = useState([]);
-    
     const [deliveryCharge,setDeliveryCharge] = useState(40);
     const [couponDiscount,setCouponDiscount] = useState(20);
     const [creditUsed,setCreditUsed] = useState(10);
-    
-const [totalPrice, setTotalPrice] = useState(210);
-// const tp = {productPrice}+{deliveryCharge}-{creditUsed}-{couponDiscount}
-// setTotalPrice(tp);
-// console.log(tp)
-
+    const [totalPrice, setTotalPrice] = useState(210);
+//  const tp = {productPrice}+{deliveryCharge}-{creditUsed}-{couponDiscount}
+//  setTotalPrice(tp);
+//  console.log(tp)
  //   var selectedProduct = '';
- const selectedProduct  = Products.filter(aux =>aux.title == Product);
- console.log(selectedProduct[0].images[0]);
+    const selectedProduct  = Products.filter(aux =>aux.title == Product);
+    console.log(selectedProduct[0].images[0]);
     useEffect(async () =>{
      //  const selectedProduct  = Products.filter(aux =>aux.title == Product);
     //   setImage(selectedProduct["images"]);
