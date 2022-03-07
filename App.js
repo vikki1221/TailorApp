@@ -10,6 +10,7 @@ import TailorDetails from './screens/tailorDetails';
 import ProductSpecification from './screens/productSpecification';
 import Cart from './screens/cart';
 import Splash from './screens/splash';
+import OrderConfirmation from './screens/orderConfirmation'
 //import Navigator from './routes/homeStack'
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -39,6 +40,7 @@ export default function App() {
      <Stack.Screen  options={{title: 'Default'}}name="TailorDetails" component={TailorDetails} />
      <Stack.Screen  options={{title: 'Default'}}name="ProductSpecification" component={ProductSpecification} />
      <Stack.Screen  options={{title: 'My Cart'}}name="Cart" component={Cart} />
+     <Stack.Screen  options={{headerShown: false}}name="Confirmed" component={OrderConfirmation} />
      
 
     </Stack.Navigator>

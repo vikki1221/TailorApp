@@ -34,7 +34,7 @@ export default function ProductSpecification({route,navigation}){
     return (
         <View style={{flex:1}}>
             {gotoaddresstab ?
-            <View>
+            <View style={{flex:1}}>
                 <Text style={{fontSize:25,textAlign:'center',margin:10}} >Confirm your address</Text>
                 <Pressable
                     style={{backgroundColor:"#fdeb93",height:50,justifyContent:'center',alignContent:'center',borderRadius:10}}
@@ -65,14 +65,16 @@ export default function ProductSpecification({route,navigation}){
                     <Text style={{textAlign: 'center',color:'red',fontSize:20}}>Save Address</Text>
                 </Pressable>
     </SafeAreaView>
-    <Pressable
+                    </View>
+                }
+                 <View style={{position:'absolute',bottom:0,width:'100%'}}>
+        <Pressable
                     style={{backgroundColor:"#fdeb93",height:50,justifyContent:'center',alignContent:'center',borderRadius:10}}
-                    onPress={()=>setAddressTab(true)}
+                    onPress={()=>navigation.navigate("Confirmed")}
                 >
                     <Text style={{textAlign: 'center',color:'red',fontSize:20}}>Place Order</Text>
                 </Pressable>
-                    </View>
-                }
+        </View>
             </View>
         :
             <View style={{flex:1}}>
