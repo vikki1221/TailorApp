@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { FlatList,Alert,Modal,Pressable, SafeAreaView, StatusBar,ImageBackground, StyleSheet,Image, Text,useWindowDimensions ,TouchableOpacity,Dimensions, View, Button } from "react-native";
+import { FlatList,Alert,Modal,Pressable, SafeAreaView, StatusBar,ImageBackground, StyleSheet,Image, Text,useWindowDimensions ,TouchableOpacity,Dimensions, View, Button, TextInputBase } from "react-native";
 import { Card } from "react-native-shadow-cards";
 import products from "../model/products";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { ScrollView, TextInput } from "react-native-gesture-handler";
 
 export default function ProductSpecification({route,navigation}){
     const {Product} = route.params;
@@ -14,6 +15,9 @@ export default function ProductSpecification({route,navigation}){
     const [couponDiscount,setCouponDiscount] = useState(20);
     const [creditUsed,setCreditUsed] = useState(10);
     const [totalPrice, setTotalPrice] = useState(210);
+    
+  const [gotoaddresstab, setGoToAddressTab] = useState(false);
+  const [addresstab, setAddressTab] = useState(false);
 //  const tp = {productPrice}+{deliveryCharge}-{creditUsed}-{couponDiscount}
 //  setTotalPrice(tp);
 //  console.log(tp)
@@ -28,7 +32,51 @@ export default function ProductSpecification({route,navigation}){
 
    // console.log(productPrice);
     return (
-        <View>
+        <View style={{flex:1}}>
+            {gotoaddresstab ?
+            <View>
+                <Text style={{fontSize:25,textAlign:'center',margin:10}} >Confirm your address</Text>
+                <Pressable
+                    style={{backgroundColor:"#fdeb93",height:50,justifyContent:'center',alignContent:'center',borderRadius:10}}
+                    onPress={()=>setAddressTab(true)}
+                >
+                    <Text style={{textAlign: 'center',color:'red',fontSize:20}}>Add Address</Text>
+                </Pressable>
+                {addresstab &&
+                <View>
+                    <SafeAreaView style={styles.textAreaContainer}>
+                        
+                <TextInput placeholder="Name"/>
+                <TextInput placeholder="Mobile No"/>
+                <TextInput
+                    placeholder="House No, Building Name"
+                />
+                <TextInput
+                    placeholder="Street Name,Colony Name"
+                    // keyboardType="numeric"
+                />
+                <TextInput placeholder="City"/>
+                <TextInput placeholder="State"/>
+                <TextInput placeholder="PinCode"/>
+                <Pressable
+                    style={{backgroundColor:"#fdeb93",height:50,justifyContent:'center',alignContent:'center',borderRadius:10}}
+                    onPress={()=>setAddressTab(true)}
+                >
+                    <Text style={{textAlign: 'center',color:'red',fontSize:20}}>Save Address</Text>
+                </Pressable>
+    </SafeAreaView>
+    <Pressable
+                    style={{backgroundColor:"#fdeb93",height:50,justifyContent:'center',alignContent:'center',borderRadius:10}}
+                    onPress={()=>setAddressTab(true)}
+                >
+                    <Text style={{textAlign: 'center',color:'red',fontSize:20}}>Place Order</Text>
+                </Pressable>
+                    </View>
+                }
+            </View>
+        :
+            <View style={{flex:1}}>
+            <ScrollView>
          <View style={{alignItems:'center'}}>            
             <Card style={{marginTop:20,padding:20,height:200}}>
                 <View style={{flex:1,flexDirection:'row'}}>
@@ -77,8 +125,28 @@ export default function ProductSpecification({route,navigation}){
                 </View>
                 
         </View>
+        </ScrollView>
+        <View style={{position:'absolute',bottom:0,width:'100%'}}>
+        <Pressable
+                    style={{backgroundColor:"#fdeb93",height:50,justifyContent:'center',alignContent:'center',borderRadius:10}}
+                    onPress={()=>setGoToAddressTab(true)}
+                >
+                    <Text style={{textAlign: 'center',color:'red',fontSize:20}}>Confirm Order</Text>
+                </Pressable>
+        </View>
+        </View>
+}
         </View>
 
     );
 
 }
+
+const styles = StyleSheet.create({
+    textAreaContainer: {
+        margin:10,
+        borderColor: '#DCE0DF',
+        borderWidth: 2,
+        padding: 5
+      },
+})
